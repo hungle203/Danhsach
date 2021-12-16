@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>MyLinkList.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #f97bb0; font-weight: bold;}
+.s1 { color: #dfdfe0;}
+.s2 { color: #d7c781;}
+</style>
+</head>
+<body bgcolor="#292a30">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MyLinkList.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">baitap;</span>
+
+<span class="s0">import </span><span class="s1">org.w3c.dom.Node;</span>
+
+<span class="s0">public class </span><span class="s1">MyLinkList {</span>
+    <span class="s0">private </span><span class="s1">Node head;</span>
+    <span class="s0">private int </span><span class="s1">numNode;</span>
+    <span class="s0">private boolean </span><span class="s1">flag;</span>
+
+    <span class="s0">public static class </span><span class="s1">Node {</span>
+        <span class="s0">private </span><span class="s1">Node next;</span>
+        <span class="s0">private final </span><span class="s1">Object data;</span>
+
+        <span class="s0">public </span><span class="s1">Node(Object data) {</span>
+            <span class="s0">this</span><span class="s1">.data = data;</span>
+        <span class="s1">}</span>
+        <span class="s0">public </span><span class="s1">Object getData() {</span>
+            <span class="s0">return this</span><span class="s1">.data;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s0">public </span><span class="s1">MyLinkList(Object data) {</span>
+        <span class="s1">head = </span><span class="s0">new </span><span class="s1">Node(data);</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">add(</span><span class="s0">int </span><span class="s1">index, Object data) {</span>
+        <span class="s1">Node temp = head;</span>
+        <span class="s1">Node holder;</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s2">0</span><span class="s1">; i &lt; index-</span><span class="s2">1 </span><span class="s1">&amp;&amp; temp.next!=</span><span class="s0">null</span><span class="s1">; i++) {</span>
+            <span class="s1">temp = temp.next;</span>
+        <span class="s1">}</span>
+        <span class="s1">holder = temp.next;</span>
+        <span class="s1">temp.next = </span><span class="s0">new </span><span class="s1">Node(data);</span>
+        <span class="s1">temp.next.next = holder;</span>
+        <span class="s1">numNode++;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">addFist(Object data) {</span>
+        <span class="s1">Node temp = head;</span>
+        <span class="s1">head = </span><span class="s0">new </span><span class="s1">Node(data);</span>
+        <span class="s1">head.next = temp;</span>
+       <span class="s1">numNode++;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">addLast(Object data) {</span>
+        <span class="s0">if </span><span class="s1">(head == </span><span class="s0">null</span><span class="s1">)</span>
+            <span class="s1">addFist(data);</span>
+        <span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">Node temp = head;</span>
+            <span class="s0">while </span><span class="s1">(temp.next != </span><span class="s0">null</span><span class="s1">) temp = temp.next;</span>
+            <span class="s1">temp.next = </span><span class="s0">new </span><span class="s1">Node(data);</span>
+
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">remote(</span><span class="s0">int </span><span class="s1">index) {</span>
+        <span class="s1">Node temp = head;</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s2">0</span><span class="s1">; i &lt; index-</span><span class="s2">1 </span><span class="s1">&amp;&amp; temp!=</span><span class="s0">null</span><span class="s1">; i++) {</span>
+            <span class="s1">temp.next = head;</span>
+        <span class="s1">}</span>
+        <span class="s1">numNode--;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">get(</span><span class="s0">int </span><span class="s1">index) {</span>
+        <span class="s1">Node temp = head;</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s2">0</span><span class="s1">; i &lt; index-</span><span class="s2">1</span><span class="s1">; i++)</span>
+            <span class="s1">System.out.println(temp.data);</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">size() {</span>
+        <span class="s1">Node temp = head;</span>
+        <span class="s0">int </span><span class="s1">i = </span><span class="s2">0</span><span class="s1">;</span>
+        <span class="s0">while </span><span class="s1">(temp != </span><span class="s0">null</span><span class="s1">) {</span>
+            <span class="s1">temp = temp.next;</span>
+            <span class="s1">i++;</span>
+        <span class="s1">}</span>
+        <span class="s1">System.out.println(i);</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public boolean </span><span class="s1">contains(Object data) {</span>
+        <span class="s1">Node temp = head;</span>
+        <span class="s0">int </span><span class="s1">q = </span><span class="s2">0</span><span class="s1">;</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s2">0</span><span class="s1">; i &lt;= numNode; i++) {</span>
+            <span class="s0">if </span><span class="s1">((temp.data).equals(data)) {</span>
+                <span class="s1">flag = </span><span class="s0">true</span><span class="s1">;</span>
+                <span class="s0">break</span><span class="s1">;</span>
+            <span class="s1">}</span>
+            <span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">flag = </span><span class="s0">false</span><span class="s1">;</span>
+                <span class="s0">break</span><span class="s1">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return false</span><span class="s1">;</span>
+    <span class="s1">}</span>
+    <span class="s0">public int </span><span class="s1">indexOf(Object data) {</span>
+        <span class="s1">Node temp = head;</span>
+        <span class="s0">int </span><span class="s1">q =</span><span class="s2">0</span><span class="s1">;</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s2">0</span><span class="s1">; i &lt; numNode; i++) {</span>
+            <span class="s0">if </span><span class="s1">((temp.data).equals(data)) {</span>
+                <span class="s1">q = i;</span>
+                <span class="s0">break</span><span class="s1">;</span>
+            <span class="s1">}</span>
+            <span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">temp = temp.next;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">q;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">printList() {</span>
+        <span class="s1">Node temp = head;</span>
+        <span class="s0">while </span><span class="s1">(temp!=</span><span class="s0">null</span><span class="s1">) {</span>
+            <span class="s1">System.out.println(temp.data);</span>
+            <span class="s1">temp = temp.next;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
